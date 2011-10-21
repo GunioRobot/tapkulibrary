@@ -3,9 +3,9 @@
 //  Created by Devin Ross on 4/16/10.
 //
 /*
- 
+
  tapku.com || https://github.com/devinross/tapkulibrary
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -14,10 +14,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,7 +26,7 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 
 #import "ImageCenterViewController.h"
@@ -36,7 +36,7 @@
 - (id) init{
 	if(!(self=[super init])) return nil;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newImageRetrieved) name:@"newImage" object:nil];
-	
+
 	urlArray = [[NSArray alloc] initWithObjects:
 				@"http://farm3.static.flickr.com/2797/4196552800_a5de0f3627_t.jpg",
 				@"http://farm3.static.flickr.com/2380/2417672368_a41257399f_t.jpg",
@@ -53,9 +53,9 @@
 				@"http://farm4.static.flickr.com/3664/3660136156_dbf8852267_t.jpg",
 				@"http://farm4.static.flickr.com/3369/3659337053_180878a026_t.jpg",
 				nil];
-	
 
-	
+
+
 	return self;
 }
 
@@ -69,16 +69,16 @@
 	[super loadView];
 	self.tableView.rowHeight = 120;
 	self.tableView.allowsSelection = NO;
-	
+
 	UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,100)];
-	
+
 	UILabel *lab = [[UILabel alloc] initWithFrame:CGRectInset(v.bounds, 20, 20)];
 	lab.text = @"The image center handles large amounts of network image requests. Good for things like twitter avatars.";
 	lab.numberOfLines = 3;
 	lab.font = [UIFont boldSystemFontOfSize:13];
 	lab.textColor = [UIColor grayColor];
 	[v addSubview:lab];
-	
+
 	self.tableView.tableHeaderView = v;
 	[v release];
 	[lab release];
@@ -90,7 +90,7 @@
 
 	for (UITableViewCell * cell in [self.tableView visibleCells]) {
 		if(cell.imageView.image == nil){
-			
+
 			int i = [self.tableView indexPathForCell:cell].row % [urlArray count];
 			UIImage *image = [[TKImageCenter sharedImageCenter] imageAtURL:[urlArray objectAtIndex:i] queueIfNeeded:NO];
 
@@ -98,7 +98,7 @@
 				cell.imageView.image = image;
 				[cell setNeedsLayout];
 			}
-	
+
 		}
 	}
 }
@@ -114,22 +114,22 @@
     return [urlArray count] * 3;
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    
+
 
 	cell.textLabel.text = [NSString stringWithFormat:@"Cell %d",indexPath.row];
 	int i = indexPath.row;
-	
+
 	int index = i % [urlArray count];
 	UIImage *image = [[TKImageCenter sharedImageCenter] imageAtURL:[urlArray objectAtIndex:index] queueIfNeeded:YES];
 	cell.imageView.image = image;
 
-    
+
     return cell;
 }
 

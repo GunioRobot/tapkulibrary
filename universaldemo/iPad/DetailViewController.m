@@ -3,9 +3,9 @@
 //  Created by Devin Ross on 7/7/10.
 //
 /*
- 
+
  tapku.com || https://github.com/devinross/tapkulibrary
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -14,10 +14,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,7 +26,7 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 
 #import "DetailViewController.h"
@@ -45,7 +45,7 @@
     [super viewDidLoad];
 
 	self.view.backgroundColor = [UIColor whiteColor];
-	
+
     toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
 	toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	toolbar.items = [NSArray array];
@@ -56,21 +56,21 @@
 - (void) setupWithMainController:(UIViewController*)controller{
 	[self.mainController.view removeFromSuperview];
 	self.mainController = controller;
-	
+
 	CGRect r = CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height);
 	self.mainController.view.frame = r;
 	[self.mainController viewWillAppear:NO];
 	[self.view addSubview:self.mainController.view];
 	[self.mainController viewDidAppear:NO];
-	
+
 
 
 	if(self.popoverController!=nil){
 		NSLog(@"HELLO");
-		
+
 		UIBarButtonItem *item = [[self.toolbar items] objectAtIndex:0];
-		
-		
+
+
 		NSMutableArray *items = [NSMutableArray array];
 		[items addObject:item];
 
@@ -80,18 +80,18 @@
 		NSLog(@"%@",items);
 		[self.toolbar setItems:items animated:YES];
 
-		
+
 	}else{
 		[self.toolbar setItems:self.mainController.toolbarItems];
 
 	}
-	
-	
-	
+
+
+
 }
 
 - (void) splitViewController: (UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController: (UIPopoverController*)pc {
-    
+
 
 	barButtonItem.title = @"Demos";
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
@@ -101,8 +101,8 @@
     self.popoverController = pc;
 }
 - (void) splitViewController: (UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
-	
-	
+
+
 
 	NSMutableArray *items = [[toolbar items] mutableCopy];
     [items removeObjectAtIndex:0];
@@ -120,16 +120,16 @@
     return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+
     // Configure the cell...
-    
+
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -151,7 +151,7 @@
 - (void) didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 - (void) viewDidUnload {

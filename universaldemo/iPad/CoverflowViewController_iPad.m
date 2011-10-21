@@ -3,9 +3,9 @@
 //  Created by Devin Ross on 4/17/10.
 //
 /*
- 
+
  tapku.com || https://github.com/devinross/tapkulibrary
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -14,10 +14,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,7 +26,7 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 
 #import "CoverflowViewController_iPad.h"
@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+
 	self.view.backgroundColor = [UIColor blackColor];
 
 
@@ -45,13 +45,13 @@
 			   [UIImage imageNamed:@"ipadcover_5.jpg"],[UIImage imageNamed:@"ipadcover_6.jpg"],
 			   [UIImage imageNamed:@"ipadcover_7.jpg"],[UIImage imageNamed:@"ipadcover_8.jpg"],
 			   [UIImage imageNamed:@"ipadcover_9.jpg"],nil] retain];
-	
+
 
 	CGRect r = self.view.bounds;
 	r.size.height = 1000;
 
 
-	
+
 	coverflow = [[TKCoverflowView alloc] initWithFrame:r];
 	coverflow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	coverflow.coverflowDelegate = self;
@@ -60,7 +60,7 @@
 	coverflow.coverSpacing = 100;
 	coverflow.coverSize = CGSizeMake(300, 300);
 	[coverflow setNumberOfCovers:100];
-	
+
 
 }
 
@@ -73,36 +73,36 @@
 
 }
 - (TKCoverflowCoverView*) coverflowView:(TKCoverflowView*)coverflowView coverAtIndex:(int)index{
-	
+
 	TKCoverflowCoverView *cover = [coverflowView dequeueReusableCoverView];
-	
+
 	if(cover == nil){
 		cover = [[[TKCoverflowCoverView alloc] initWithFrame:CGRectMake(0, 0, 300, 600)] autorelease]; // 224
 		cover.baseline = 200;
 	}
 	cover.image = [covers objectAtIndex:index%[covers count]];
-	
+
 	return cover;
-	
+
 }
 - (void) coverflowView:(TKCoverflowView*)coverflowView coverAtIndexWasDoubleTapped:(int)index{
-	
-	
+
+
 	TKCoverflowCoverView *cover = [coverflowView coverAtIndex:index];
 	if(cover == nil) return;
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:1];
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:cover cache:YES];
 	[UIView commitAnimations];
-	
 
-	
+
+
 }
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 - (void)viewDidUnload {
@@ -110,13 +110,13 @@
 	// e.g. self.myOutlet = nil;
 }
 - (void)dealloc {
-	
+
 	coverflow.delegate = nil;
 	coverflow.dataSource = nil;
 	[coverflow release];
-	
+
 	[covers release];
-	
+
     [super dealloc];
 }
 

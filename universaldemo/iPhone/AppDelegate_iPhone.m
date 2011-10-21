@@ -3,9 +3,9 @@
 //  Created by Devin Ross on 7/7/10.
 //
 /*
- 
+
  tapku.com || https://github.com/devinross/tapkulibrary
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -14,10 +14,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,7 +26,7 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 
 #import "AppDelegate_iPhone.h"
@@ -47,27 +47,27 @@
 }
 
 
-- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[super application:application didFinishLaunchingWithOptions:launchOptions];
 
-    
+
 	root = [[RootViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	navigationController = [[TKNavigationController alloc] initWithRootViewController:root];
-	
 
 
 
-	
-	
-	
+
+
+
+
 	[self.window addSubview:navigationController.view];
-	
-	
+
+
 	return YES;
 }
 - (void) applicationWillEnterForeground:(UIApplication *)application {
 	[super applicationWillEnterForeground:application];
-	
+
 }
 
 
@@ -90,7 +90,7 @@
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
-	
+
 	[[TKImageCenter sharedImageCenter] clearImages];
 }
 

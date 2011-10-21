@@ -3,9 +3,9 @@
 //  Created by Devin Ross on 10/31/09.
 //
 /*
- 
+
  tapku.com || http://github.com/devinross/tapkulibrary
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -14,10 +14,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,7 +26,7 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 #import "TKCalendarMonthTableViewController.h"
 #import "NSDate+TKCategory.h"
@@ -47,12 +47,12 @@
 - (void) loadView{
 	[super loadView];
 	self.tableView.backgroundColor = [UIColor whiteColor];
-	
+
 	float y,height;
 	y = self.monthView.frame.origin.y + self.monthView.frame.size.height;
 	height = self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - y;
-	
-	
+
+
 	_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, 320, height) style:UITableViewStylePlain];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
@@ -64,23 +64,23 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 0;	
+	return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
 
-	
+
     return cell;
-	
+
 }
 
 
@@ -91,18 +91,18 @@
 }
 
 - (void) updateTableOffset:(BOOL)animated{
-	
-	
+
+
 	if(animated){
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:0.4];
 		[UIView setAnimationDelay:0.1];
 	}
 
-	
+
 	float y = self.monthView.frame.origin.y + self.monthView.frame.size.height;
 	self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, y, self.tableView.frame.size.width, self.view.frame.size.height - y );
-	
+
 	if(animated) [UIView commitAnimations];
 }
 

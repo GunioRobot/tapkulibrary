@@ -208,11 +208,11 @@ NSString *theKey = NULL;
 while ((theKey = [theEnumerator nextObject]) != NULL)
 	{
 	id theValue = [inDictionary objectForKey:theKey];
-	
+
 	[theData appendData:[self serializeString:theKey]];
 	[theData appendBytes:":" length:1];
 	[theData appendData:[self serializeObject:theValue]];
-	
+
 	if (theKey != [theKeys lastObject])
 		[theData appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
 	}

@@ -3,9 +3,9 @@
 //  Created by Devin Ross on 3/23/11.
 //
 /*
- 
+
  tapku.com || http://github.com/devinross/tapkulibrary
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -14,10 +14,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,7 +26,7 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 
 #import "TKNavigationController.h"
@@ -50,7 +50,7 @@
 		[_customBackgroundImage drawInRect:rect];
 	else
 		[super drawRect:rect];
-	
+
 }
 - (void) setCustomBackgroundImage:(UIImage *)img{
 	[_customBackgroundImage release];
@@ -80,9 +80,9 @@
 }
 
 - (void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-	
+
 	UIViewController *current = [self topViewController];
-	
+
 	if([current.navigationItem isKindOfClass:[TKNavigationItem class]]){
 		TKNavigationItem *navItem = (TKNavigationItem*)current.navigationItem;
 		if(viewController.navigationItem.leftBarButtonItem==nil){
@@ -91,7 +91,7 @@
 
 		}
 	}
-	
+
 	[super pushViewController:viewController animated:animated];
 	[self.navigationBar pushNavigationItem:viewController.navigationItem animated:YES];
 
@@ -109,7 +109,7 @@
 	if(_customNavigationBar==nil){
 		_customNavigationBar = [[TKNavigationBar alloc] initWithFrame:CGRectMake(0,0,320,44)];
 		_customNavigationBar.delegate = self;
-		
+
 		UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@""];
 		[_customNavigationBar pushNavigationItem:item animated:NO];
 		[item release];
@@ -117,7 +117,7 @@
 	return _customNavigationBar;
 }
 
-- (UINavigationBar *) navigationBar{	
+- (UINavigationBar *) navigationBar{
 	return (self.customNavigationBar)?(self.customNavigationBar):([super navigationBar]);
 }
 

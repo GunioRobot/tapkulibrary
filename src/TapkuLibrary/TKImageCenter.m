@@ -3,9 +3,9 @@
 //  Created by Devin Ross on 4/12/10.
 //
 /*
- 
+
  tapku.com || http://github.com/tapku/tapkulibrary/tree/master
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -14,10 +14,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,7 +26,7 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 
 
@@ -61,23 +61,23 @@
 }
 
 - (void) main {
-	
+
 	UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.imageURL]]];
 	if(img!=nil){
-		
-		
+
+
 		img = [imageCenter adjustImageRecieved:img];
-		
+
 		if(img!=nil){
-			[imageCenter performSelectorOnMainThread:@selector(sendNewImageNotification:) 
-										  withObject:[NSArray arrayWithObjects:img,self.imageURL,nil] 
+			[imageCenter performSelectorOnMainThread:@selector(sendNewImageNotification:)
+										  withObject:[NSArray arrayWithObjects:img,self.imageURL,nil]
 									   waitUntilDone:YES];
 		}
-		
 
-		
+
+
 	}
-	
+
 }
 
 @end
@@ -103,35 +103,35 @@
 
 
 - (UIImage*) imageAtURL:(NSString*)imageURL queueIfNeeded:(BOOL)addToQueue{
-	
+
 	UIImage *img = [images objectForKey:imageURL];
 	if(img != nil) return img;
-	
-	
+
+
 	BOOL addOperation = addToQueue ? YES : NO;
-	
+
 	if(addOperation){
-		
+
 		for(ImageLoadOperation *op in [queue operations]){
 			if([op.imageURL isEqualToString:imageURL]){
 				addOperation = NO;
 				break;
 			}
 		}
-		
+
 		if(addOperation){
 			ImageLoadOperation *op = [[ImageLoadOperation alloc] initWithImageURLString:imageURL];
 			op.imageCenter = self;
 			[queue addOperation:op];
 			[op release];
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 	return nil;
-	
+
 }
 
 
@@ -159,5 +159,5 @@
 	[images release];
 	[super dealloc];
 }
-	 
+
 @end

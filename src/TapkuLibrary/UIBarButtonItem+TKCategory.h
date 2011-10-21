@@ -12,14 +12,14 @@
 @interface UIBarButtonItem (TKCategory)
 
 
-+ (UIBarButtonItem*) barButtonItemWithTitle:(NSString*)title 
-							backgroundImage:(UIImage*)backgroundImage 
-				 highlightedBackgroundImage:(UIImage*)highlighedBackgroundImage 
++ (UIBarButtonItem*) barButtonItemWithTitle:(NSString*)title
+							backgroundImage:(UIImage*)backgroundImage
+				 highlightedBackgroundImage:(UIImage*)highlighedBackgroundImage
 									 target:(id)target selector:(SEL)selector;
 
 + (UIBarButtonItem*) barButtonItemWithImage:(UIImage*)image
-							backgroundImage:(UIImage*)backgroundImage 
-				 highlightedBackgroundImage:(UIImage*)highlighedBackgroundImage 
+							backgroundImage:(UIImage*)backgroundImage
+				 highlightedBackgroundImage:(UIImage*)highlighedBackgroundImage
 									 target:(id)target selector:(SEL)selector;
 
 @end
